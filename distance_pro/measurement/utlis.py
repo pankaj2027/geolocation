@@ -1,4 +1,17 @@
 from django.contrib.gis.geoip2 import GeoIP2
+import requests
+import json
+
+def current_location():
+ 
+
+    send_url = "http://api.ipstack.com/check?access_key=c8d87ebf9a98cd3f78f0a7cf664e8054"
+    geo_req = requests.get(send_url)
+    geo_json = json.loads(geo_req.text)
+    latitude = geo_json['latitude']
+    longitude = geo_json['longitude']
+    city = geo_json['city']
+    return city
 
 
 def get_ip_address(request):
